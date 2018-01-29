@@ -1,0 +1,141 @@
+!   Copyright (c) 1996-2012 Brocade Communications Systems, Inc. All rights reserved
+!     UNIT 1: compiled on Jan 09 2013 at 11:46:01 labeled as FWS07400c
+! 		(2864516 bytes) from Primary FWS07400c.bin
+!         SW: Version 07.4.00cT7e1 
+!   Boot-Monitor Image size = 416213, Version:05.0.00T7e5 (Fev2)
+!   HW: Stackable FWS624G
+! ==========================================================================
+! UNIT 1: SL 1: FastIron WS 624G 24-port Management Module
+!  	 Serial  #: MAAN30G00K
+!  	 License: BASE_SOFT_PACKAGE   (LID: occpIFiFFm)
+!  	 P-ENGINE  0: type D814, rev 01
+! ==========================================================================
+!   400 MHz Power PC processor 8248 (version 130/2014) 66 MHz bus
+!   512 KB boot flash memory
+! 30720 KB code flash memory
+!   256 MB DRAM
+! 
+! The system : started=warm start	 reloaded=by "reload"
+! 
+! The stack unit 1 chassis info: 
+! 
+! Power supply 1 (NA - AC - Regular) present, status ok
+! Power supply 2 not present
+! 
+! Fan ok, speed (auto): 
+! 
+! Fan speed switching temperature thresholds:
+! 	1 -> 2 @ 64 deg-C
+! 	1 <- 2 @ 58 deg-C
+! 	2 -> 3 @ 66 deg-C
+! 	2 <- 3 @ 60 deg-C
+! 
+! Exhaust Side Temperature Readings:
+! 
+! Intake Side Temperature Readings:
+! 
+! 	Warning level.......: XX.X deg-C
+! 	Shutdown level......: XX.X deg-C
+! Boot Prom MAC : 748e.f812.8840
+! Management MAC: 748e.f812.8840
+! Stack unit 1:
+!   Compressed Pri Code size = 2864516, Version 07.4.00cT7e1 (FWS07400c.bin)
+!   Compressed Sec Code size = 2864516, Version 07.4.00cT7e1 (FWS07400c.bin)
+!   Compressed Boot-Monitor Image size = 416213, Version 05.0.00T7e5
+!   Code Flash Free Space = 24903680
+!        Module                                         Status Ports Starting MAC  
+! U1:M1  FastIron WS 624G 24-port Management Module       OK     24   748e.f812.8840
+ver 07.4.00cT7e1
+!
+module 1 fws1g-24-port-copper-base-module
+!
+!
+!
+!
+spanning-tree single
+!
+vlan 1 name DEFAULT-VLAN by port
+ spanning-tree
+!
+vlan 44 by port
+ tagged ethe 0/1/1 to 0/1/6 
+ spanning-tree
+ management-vlan
+ default-gateway  10.123.44.1 1
+!
+vlan 1337 by port
+ spanning-tree
+!
+vlan 2016 by port
+ tagged ethe 0/1/1 to 0/1/6 
+ untagged ethe 0/1/11 to 0/1/24 
+ spanning-tree
+!
+vlan 2017 by port
+ tagged ethe 0/1/1 to 0/1/6 
+ spanning-tree
+!
+vlan 2018 by port
+ tagged ethe 0/1/1 to 0/1/6 
+ spanning-tree
+!
+vlan 2019 by port
+ tagged ethe 0/1/1 to 0/1/6 
+ spanning-tree
+!
+vlan 2020 by port
+ tagged ethe 0/1/1 to 0/1/6 
+ untagged ethe 0/1/7 to 0/1/10 
+ spanning-tree
+!
+vlan 2021 by port
+ tagged ethe 0/1/1 to 0/1/6 
+ spanning-tree
+!
+!
+!
+!
+!
+!
+aaa authentication login default local
+enable aaa console
+hostname south1
+ip address 10.123.44.15 255.255.254.0
+ip dns domain-list kramse.dk
+ip dns server-address 8.8.8.8
+no ip dhcp-client enable
+logging host 10.123.44.1
+logging facility local0
+no telnet server
+username hlk password .....
+username bhadmin password .....
+snmp-server community ..... ro
+snmp-server contact noc@bornhack.dk
+snmp-server location south-bornhack-dk
+clock summer-time
+clock timezone gmt GMT+01
+interface ethernet 0/1/2
+ dual-mode  44
+!
+interface ethernet 0/1/3
+ dual-mode  44
+!
+interface ethernet 0/1/4
+ dual-mode  44
+!
+interface ethernet 0/1/5
+ dual-mode  44
+!
+interface ethernet 0/1/6
+ dual-mode  44
+!
+!
+!
+lldp run
+!
+!
+ip ssh  idle-time 20
+!
+!
+end
+

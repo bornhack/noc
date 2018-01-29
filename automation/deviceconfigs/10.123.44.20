@@ -1,0 +1,150 @@
+!   Copyright (c) 1996-2016 Brocade Communications Systems, Inc. All rights reserved.
+!     UNIT 1: compiled on May 19 2016 at 01:15:45 labeled as ICX64S08030h
+! 		(8500344 bytes) from Primary ICX64S08030h.bin
+!         SW: Version 08.0.30hT311 
+!   Boot-Monitor Image size = 776680, Version:07.4.01T310 (kxz07401)
+!   HW: Stackable ICX6430-24
+! ==========================================================================
+! UNIT 1: SL 1: ICX6430-24 24-port Management Module
+!  	 Serial  #: BZN2503J0YR
+!  	 License: BASE_SOFT_PACKAGE   (LID: dbpHKFIlFat)
+!  	 P-ENGINE  0: type E7FE, rev 01
+! ==========================================================================
+! UNIT 1: SL 2: ICX6430-SFP 4port 4G Module
+! ==========================================================================
+!   500 MHz ARM processor ARMv5TE, 400 MHz bus
+! 32768 KB flash memory
+!   256 MB DRAM
+! 
+! The system : started=warm start	 reloaded=by "reload"
+! 
+! The stack unit 1 chassis info: 
+! 
+! Power supply present, status ok
+! 
+! Fanless model
+! 
+! Sensor B Temperature Readings:
+! 
+! Sensor A Temperature Readings:
+! 
+! 	Warning level.......: XX.X deg-C
+! 	Shutdown level......: XX.X deg-C
+! Boot Prom MAC : 748e.f8b5.c660
+! Management MAC: 748e.f8b5.c660
+! Stack unit 1:
+!   Compressed Pri Code size = 8500344, Version:08.0.30hT311 (ICX64S08030h.bin)
+!   Compressed Sec Code size = 10371776, Version:07.4.00bT311 (ICX64S07400b.bin)
+!   Compressed Boot-Monitor Image size = 776680, Version:07.4.01T310
+!   Code Flash Free Space = 8040448
+!        Module                                         Status Ports Starting MAC  
+! U1:M1  ICX6430-24 24-port Management Module             OK     24   748e.f8b5.c660
+! U1:M2  ICX6430-SFP 4port 4G Module                      OK     4    748e.f8b5.c679
+ver 08.0.30hT311
+!
+stack unit 1
+  module 1 icx6430-24-port-management-module
+  module 2 icx6430-sfp-4port-4g-module
+!
+!
+!
+!
+spanning-tree single
+!
+vlan 1 name DEFAULT-VLAN by port
+ spanning-tree
+!
+vlan 44 by port
+ tagged ethe 1/1/1 to 1/1/6 ethe 1/2/1 to 1/2/4 
+ spanning-tree
+ management-vlan
+ default-gateway  10.123.44.1 1
+!
+vlan 2016 by port
+ tagged ethe 1/1/1 to 1/1/6 ethe 1/2/1 to 1/2/4 
+ untagged ethe 1/1/9 to 1/1/24 
+ spanning-tree
+!
+vlan 2017 by port
+ tagged ethe 1/1/1 to 1/1/6 ethe 1/2/1 to 1/2/4 
+ spanning-tree
+!
+vlan 2018 by port
+ tagged ethe 1/1/1 to 1/1/6 ethe 1/2/1 to 1/2/4 
+ spanning-tree
+!
+vlan 2019 by port
+ tagged ethe 1/1/1 to 1/1/6 ethe 1/2/1 to 1/2/4 
+ spanning-tree
+!
+vlan 2020 by port
+ tagged ethe 1/1/1 to 1/1/6 ethe 1/2/1 to 1/2/4 
+ untagged ethe 1/1/7 to 1/1/8 
+ spanning-tree
+!
+vlan 2021 by port
+ tagged ethe 1/1/1 to 1/1/6 ethe 1/2/1 to 1/2/4 
+ spanning-tree
+!
+!
+!
+!
+!
+aaa authentication login default local
+enable aaa console
+hostname south2
+ip address 10.123.44.20 255.255.254.0
+ip dns server-address 8.8.8.8
+no ip dhcp-client enable
+!
+logging host 10.123.44.1 
+logging facility local0
+no telnet server
+username hlk password .....
+snmp-server community ..... ro
+snmp-server contact noc@bornhack.dk
+snmp-server location center-bornhack-dk
+!
+!
+clock summer-time
+clock timezone gmt GMT+01
+interface ethernet 1/1/1
+ dual-mode  44
+!
+interface ethernet 1/1/2
+ dual-mode  44
+!
+interface ethernet 1/1/3
+ dual-mode  44
+!
+interface ethernet 1/1/4
+ dual-mode  44
+!
+interface ethernet 1/1/5
+ dual-mode  44
+!
+interface ethernet 1/1/6
+ dual-mode  44
+!
+interface ethernet 1/2/1
+ dual-mode  44
+!
+interface ethernet 1/2/2
+ dual-mode  44
+!
+interface ethernet 1/2/3
+ dual-mode  44
+!
+interface ethernet 1/2/4
+ dual-mode  44
+!
+!
+!
+!
+lldp run
+!
+!
+!
+!
+end
+

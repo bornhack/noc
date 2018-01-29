@@ -1,0 +1,427 @@
+## Last commit: 2017-08-26 22:09:39 CEST by hlk
+version 15.1R2.9;
+system {
+    root-authentication {
+        encrypted-password "..."; ## SECRET-DATA
+    }
+    name-server {
+        10.123.44.1;
+    }
+    login {
+        message "\n\n==========================================================\n\nAccess to this device is limited to authorized users only.\n\n WARNING: All unauthorized access is prohibited.\n\n==========================================================\n\n";
+        class rancid {
+            permissions [ access admin firewall interface routing secret security snmp system trace view view-configuration ];
+        }
+        user bhadmin {
+            uid 2000;
+            class super-user;
+            authentication {
+                encrypted-password "..."; ## SECRET-DATA
+            }
+        }
+        user hlk {
+            uid 6000;
+            class super-user;
+            authentication {
+                encrypted-password "..."; ## SECRET-DATA
+                ssh-ed25519 "ssh-ed25519 AA...iboeNL5 user@Personal"; ## SECRET-DATA
+            }
+        }
+        user rancid {
+            uid 2005;
+            class rancid;
+            authentication {
+                encrypted-password "..."; ## SECRET-DATA
+                ssh-rsa "ssh-rsa AAAAB3NzaC...2t6Q== rancid" from 10.100.0.129; ## SECRET-DATA
+            }
+        }
+    }
+    services {
+        ssh {
+            root-login deny;
+            protocol-version v2;
+        }
+        dhcp {
+            traceoptions {
+                file dhcp_logfile;
+                level all;
+                flag all;
+            }
+        }
+    }
+    syslog {
+        user * {
+            any emergency;
+        }
+        file messages {
+            any notice;
+            authorization info;
+        }
+        file interactive-commands {
+            interactive-commands any;
+        }
+    }
+    ntp {
+        boot-server 10.123.44.1;
+        server 10.123.44.1;
+    }
+}
+chassis {
+    redundancy {
+        graceful-switchover;
+    }
+    auto-image-upgrade;
+}
+interfaces {
+    interface-range ap-net {
+        member-range ge-0/0/14 to ge-0/0/16;
+        unit 0 {
+            family ethernet-switching {
+                port-mode trunk;
+                vlan {
+                    members [ ssid-bornhack ssid-bornhack-nat ssid-bornhack-open ssid-bornhack-ipv6 ];
+                }
+                native-vlan-id 44;
+            }
+        }
+    }
+    interface-range camp-net {
+        member-range ge-1/1/0 to ge-1/1/1;
+        member-range ge-0/0/4 to ge-0/0/5;
+        member-range ge-0/1/0 to ge-0/1/2;
+        member-range ge-0/0/12 to ge-0/0/13;
+        unit 0 {
+            family ethernet-switching {
+                port-mode trunk;
+                vlan {
+                    members [ vlan44_mgmt ssid-bornhack ssid-bornhack-nat ssid-bornhack-open ssid-bornhack-ipv6 ohmled ];
+                }
+            }
+        }
+    }
+    interface-range mgmt-net-local {
+        member-range ge-0/0/20 to ge-0/0/23;
+        unit 0 {
+            family ethernet-switching {
+                vlan {
+                    members vlan44_mgmt;
+                }
+            }
+        }
+    }
+    interface-range wired-local {
+        member ge-0/0/10;
+        member-range ge-0/0/0 to ge-0/0/3;
+        unit 0 {
+            family ethernet-switching {
+                vlan {
+                    members ssid-bornhack;
+                }
+            }
+        }
+    }
+    ge-0/0/0 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/1 {
+        description test;
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/2 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/3 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/4 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/5 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/6 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/7 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/8 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/9 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/10 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/11 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/12 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/13 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/14 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/15 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/16 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/17 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/18 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/19 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/20 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/21 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/22 {
+        description "Core: conserver01";
+    }
+    ge-0/0/23 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/1/0 {
+        description "Core: SouthBound fiber 1";
+    }
+    xe-0/1/0 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/1/1 {
+        description "Core: northBound fiber 1";
+    }
+    xe-0/1/1 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/1/2 {
+        description "Core: WestBound fiber";
+    }
+    xe-0/1/2 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    ge-0/1/3 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    xe-0/1/3 {
+        unit 0 {
+            family ethernet-switching;
+        }
+    }
+    me0 {
+        unit 0 {
+            family inet {
+                dhcp {
+                    vendor-id Juniper-ex3300-24t;
+                }
+            }
+        }
+    }
+    vlan {
+        unit 0 {
+            family inet {
+                dhcp {
+                    vendor-id Juniper-ex3300-24t;
+                }
+            }
+        }
+        unit 44 {
+            family inet {
+                address 10.123.44.10/23;
+            }
+        }
+    }
+}
+snmp {
+    description "Zencurity EX3300";
+    location core-bornhack-dk;
+    contact "noc@zencurity.com";
+    community bornhack {
+        authorization read-only;
+        clients {
+            10.123.44.0/23;
+        }
+    }
+}
+routing-options {
+    static {
+        route 0.0.0.0/0 next-hop 10.123.44.1;
+    }
+    router-id 10.0.10.1;
+    autonomous-system 65002;
+}
+protocols {
+    igmp-snooping {
+        vlan all;
+    }
+    inactive: rstp {
+        bridge-priority 4k;
+    }
+    lldp {
+        interface all;
+    }
+    lldp-med {
+        interface all;
+    }
+}
+ethernet-switching-options {
+    storm-control {
+        interface all;
+    }
+}
+vlans {
+    default {
+        l3-interface vlan.0;
+    }
+    ohmled {
+        vlan-id 2020;
+        interface {
+            ge-0/0/6.0;
+            ge-0/0/7.0;
+        }
+    }
+    outside {
+        vlan-id 2;
+    }
+    ssid-bornhack {
+        vlan-id 2016;
+    }
+    ssid-bornhack-ipv6 {
+        vlan-id 2019;
+    }
+    ssid-bornhack-nat {
+        vlan-id 2017;
+    }
+    ssid-bornhack-open {
+        vlan-id 2018;
+    }
+    vlan10_bornfiber {
+        vlan-id 10;
+    }
+    vlan44_mgmt {
+        vlan-id 44;
+        l3-interface vlan.44;
+    }
+}
+# fpc0:
+# --------------------------------------------------------------------------
+# Model: ex3300-24t
+# Junos: 15.1R2.9
+# JUNOS EX  Software Suite [15.1R2.9]
+# JUNOS FIPS mode utilities [15.1R2.9]
+# JUNOS Online Documentation [15.1R2.9]
+# JUNOS EX 3300 Software Suite [15.1R2.9]
+# JUNOS Web Management Platform Package [15.1R2.9]
+# JUNOS Web Management Application package [15.1A1.4]
+#
+# fpc1:
+# --------------------------------------------------------------------------
+# Hostname: born-core-01
+# Model: ex3300-24t
+# Junos: 15.1R2.9
+# JUNOS EX  Software Suite [15.1R2.9]
+# JUNOS FIPS mode utilities [15.1R2.9]
+# JUNOS Online Documentation [15.1R2.9]
+# JUNOS EX 3300 Software Suite [15.1R2.9]
+# JUNOS Web Management Platform Package [15.1R2.9]
+# JUNOS Web Management Application package [15.1A1.4]
+# Hardware inventory:
+# Item             Version  Part number  Serial number     Description
+# Chassis                                GD0215490049      Virtual Chassis
+# Routing Engine 0 REV 17   750-034299   GD0215490049      EX3300 24-Port
+# Routing Engine 1 REV 17   750-034299   GD0215490078      EX3300 24-Port
+# FPC 0            REV 17   750-034299   GD0215490049      EX3300 24-Port
+#   CPU                     BUILTIN      BUILTIN           FPC CPU
+#   PIC 0                   BUILTIN      BUILTIN           24x 10/100/1000 Base-T
+#   PIC 1          REV 17   750-034299   GD0215490049      4x GE/XE SFP+
+#     Xcvr 0       1310nm   740-011783   F78HHQW           SFP-LX10
+#     Xcvr 1       1310nm   740-011783   F78HHQY           SFP-LX10
+#     Xcvr 2       1310nm   740-011783   F78HHSH           SFP-LX10
+#     Xcvr 3                NON-JNPR     113330113         SFP+-10G-CU1M
+#   Power Supply 0                                         PS 100W AC
+#   Fan Tray                                               Fan Tray
+# FPC 1            REV 17   750-034299   GD0215490078      EX3300 24-Port
+#   CPU                     BUILTIN      BUILTIN           FPC CPU
+#   PIC 0                   BUILTIN      BUILTIN           24x 10/100/1000 Base-T
+#   PIC 1          REV 17   750-034299   GD0215490078      4x GE/XE SFP+
+#     Xcvr 3                NON-JNPR     113330113         SFP+-10G-CU1M
+#   Power Supply 0                                         PS 100W AC
+#   Fan Tray                                               Fan Tray
+# License usage: none
+#
+# Licenses installed: none
+#
+#
+# Virtual Chassis ID: 5120.339e.f8e3
+# Virtual Chassis Mode: Enabled
+#                                                 Mstr           Mixed Route Neighbor List
+# Member ID  Status   Serial No    Model          prio  Role      Mode  Mode ID  Interface
+# 0 (FPC 0)  Prsnt    GD0215490049 ex3300-24t     128   Master*     NA  VC   1  vcp-255/1/3
+# 1 (FPC 1)  Prsnt    GD0215490078 ex3300-24t     128   Backup      NA  VC   0  vcp-255/1/3
+#
+# Member ID for next new member: 2 (FPC 2)
