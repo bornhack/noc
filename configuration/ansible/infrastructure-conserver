@@ -1,0 +1,32 @@
+---
+- hosts: con-*01:con-*02
+  become: yes
+  vars:
+    grouplist: []
+#  pre_tasks:
+#  - include: tasks/playbook-start.yml
+  tasks:
+
+  # Console server in Odense has temperature sensors, which are enabled here
+#  - openbsd_pkg: name={{ item }} state=latest
+#    environment:
+#      PKG_PATH: "https://stable.mtier.org/updates/6.3/i386:ftp://mirror.one.com/pub/OpenBSD/6.3/packages/i386"
+#    with_items:
+#        - digitemp
+
+  # command to generate original  digitemp_DS9097U -i -c /etc/digitemp.conf -s /dev/cuaU0
+  - name: Create digitemp config file
+    template: src=roles/infrastructure-conserver/digitemp.conf
+      dest=/etc/digitemp.conf owner=root group=wheel mode=0644
+
+  - name: create dir for temperature readings
+    action: file path=/var/log/digitemp/ state=directory
+
+  - name: create dir for scripts
+    action: file path=/root/bin state=directory
+
+  - name: Create dt_read script for reading temperature
+    template: src=roles/infrastructure-conserver/dt_read
+        dest=/root/bin/dt_read owner=root group=wheel mode=0755
+
+  - cron: name="Read temperature sensors" minute="*/1" hour="*" job="/bin/sh /root/bin/dt_read >> /dev/null 2>&1" user=root
