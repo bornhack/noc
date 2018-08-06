@@ -8,7 +8,7 @@ See more about BornHack at www.BornHack.dk
 
 ## Generic checklist NOC stuff
 
-Before camp
+### Before camp
 
 - [ ] Apply for temp resources IPv4, IPv6 and ASN from RIPE NCC
 
@@ -28,7 +28,7 @@ Notes:
 in 2018 wifi is handled by a dedicated resource, outside of NOC
 Also servers are handled by the server team
 
-Build-up - prioritized
+### Build-up - prioritized
 - [ ] Setup core router
 - [ ] Setup core switching
 - [ ] Setup South PoPs, south3 closest to house first
