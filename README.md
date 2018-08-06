@@ -14,7 +14,7 @@ See more about BornHack at www.BornHack.dk
 
 Things to find and bring
 
-- [ ] Bring Danbit armored fiber cables
+- [ ] Bring armored 100m fiber cables
 - [ ] Core switches Juniper EX3300
 - [ ] Core routers Juniper SRX
 - [ ] SFPs, thank you flexoptics!
