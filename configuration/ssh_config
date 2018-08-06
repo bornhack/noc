@@ -8,6 +8,7 @@
 #     ~/.ssh/config
 #     /etc/ssh/ssh_config
 
+# You may also experience problems if OpenSSH is to new
 
 host s1
  hostname 10.123.44.15
