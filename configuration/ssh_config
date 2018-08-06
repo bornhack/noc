@@ -1,0 +1,42 @@
+# Recommended / needed config for older Brocade switches
+
+
+# NAME
+#     ssh_config — OpenSSH SSH client configuration files
+#
+# SYNOPSIS
+#     ~/.ssh/config
+#     /etc/ssh/ssh_config
+
+
+host s1
+ hostname 10.123.44.15
+ user hlk
+ hostkeyAlgorithms +ssh-dss
+ kexAlgorithms +diffie-hellman-group1-sha1
+
+
+host s2
+ hostname 10.123.44.20
+ user hlk
+ kexAlgorithms +diffie-hellman-group1-sha1
+
+host s3
+ hostname 10.123.44.30
+ user hlk
+ kexAlgorithms +diffie-hellman-group1-sha1
+
+host s4
+ hostname 10.123.44.40
+ user hlk
+ kexAlgorithms +diffie-hellman-group1-sha1
+
+host s5
+ hostname 10.123.44.41
+ user hlk
+ kexAlgorithms +diffie-hellman-group1-sha1
+
+host s6
+ hostname 10.123.44.42
+ user hlk
+ kexAlgorithms +diffie-hellman-group1-sha1
