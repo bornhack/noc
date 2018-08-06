@@ -5,6 +5,8 @@ The core router on BornHack has been Juniper SRX with a very basic config, runni
 
 We have tried running DHCP on the devices and in VMs, both methods work fine.
 
+We used them in PACKET MODE - so no firewall
+
 Below is the config.
 ```
 ## Last changed: 2017-08-25 16:18:12 UTC
