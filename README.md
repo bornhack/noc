@@ -24,6 +24,10 @@ Things to find and bring
 - [ ] Electrical tools, screwdriver with voltage tester
 - [ ] Wire stripper, cable crimping tools whatever
 
+Notes:
+in 2018 wifi is handled by a dedicated resource, outside of NOC
+Also servers are handled by the server team
+
 Build-up - prioritized
 - [ ] Setup core router
 - [ ] Setup core switching
