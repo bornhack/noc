@@ -1,0 +1,20 @@
+
+# Bornhack
+151.216.8.2 conserver01
+
+# internal IP
+# 10.123.44.1 conserver01
+
+# LibreNMS, Oxidized, syslog
+10.123.44.5 nms01
+# Switches
+10.123.44.6 noctent1
+# Born-core is virtual chassis EX3300
+10.123.44.10 born-core-01
+10.123.44.30 south3
+10.123.44.20 south2
+10.123.44.21 southwest1
+10.123.44.15 south1
+10.123.44.40 west1
+10.123.44.41 west2
+10.123.44.42 north1
