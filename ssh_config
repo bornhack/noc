@@ -1,0 +1,80 @@
+
+# Bornhack
+Host conserver01
+  Hostname 10.123.44.1
+#      Hostname 151.216.8.2
+  User hlk
+#     LocalForward 1443 10.123.44.2:443
+#     LocalForward 8443 10.123.44.3:8443
+#     LocalForward 8000 10.123.44.4:80
+
+# internal IP
+# 10.123.44.1 conserver01
+
+# LibreNMS, Oxidized, syslog
+Host bornhack-nms01
+        Hostname 10.123.44.5
+        ProxyCommand ssh -q -a -x conserver01 -W %h:22
+
+# Switches
+# Born-core is virtual chassis EX3300
+Host born-core-01
+        Hostname 10.123.44.10
+        ProxyCommand ssh -q -a -x conserver01 -W %h:22
+#Host born-core-02
+#       Hostname 10.123.44.11
+#Host born-srx-01
+#        Hostname 10.123.44.12
+#Host born-srx-02
+#        Hostname 10.123.44.13
+
+Host noctent1
+        Port 22
+        Hostname 10.123.44.6
+        ProxyCommand ssh -q -a -x conserver01 -W %h:22
+        hostkeyAlgorithms +ssh-dss
+        kexAlgorithms +diffie-hellman-group1-sha1
+
+Host south3
+        Port 22
+        Hostname 10.123.44.30
+        ProxyCommand ssh -q -a -x conserver01 -W %h:22
+        hostkeyAlgorithms +ssh-dss
+        kexAlgorithms +diffie-hellman-group1-sha1
+
+Host south2
+        Port 22
+        Hostname 10.123.44.20
+        ProxyCommand ssh -q -a -x conserver01 -W %h:22
+        hostkeyAlgorithms +ssh-dss
+        kexAlgorithms +diffie-hellman-group1-sha1
+Host southwest1
+        Port 22
+        Hostname 10.123.44.21
+        ProxyCommand ssh -q -a -x conserver01 -W %h:22
+        hostkeyAlgorithms +ssh-dss
+        kexAlgorithms +diffie-hellman-group1-sha1
+Host south1
+        Port 22
+        Hostname 10.123.44.15
+        ProxyCommand ssh -q -a -x conserver01 -W %h:22
+        hostkeyAlgorithms +ssh-dss
+        kexAlgorithms +diffie-hellman-group1-sha1
+Host west1
+        Port 22
+        Hostname 10.123.44.40
+        ProxyCommand ssh -q -a -x conserver01 -W %h:22
+        hostkeyAlgorithms +ssh-dss
+        kexAlgorithms +diffie-hellman-group1-sha1
+Host west2
+        Port 22
+        Hostname 10.123.44.41
+        ProxyCommand ssh -q -a -x conserver01 -W %h:22
+        hostkeyAlgorithms +ssh-dss
+        kexAlgorithms +diffie-hellman-group1-sha1
+Host north1
+        Port 22
+        Hostname 10.123.44.42
+        ProxyCommand ssh -q -a -x conserver01 -W %h:22
+        hostkeyAlgorithms +ssh-dss
+        kexAlgorithms +diffie-hellman-group1-sha1
