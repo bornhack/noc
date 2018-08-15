@@ -1,14 +1,15 @@
 # Bornhack
-# to get acces:
-# 1. add conserverser01 to ~/.ssh/config (see below)
-# 2. get hlk to add you and your public key to conserver01
+
+# To get access:
+# 1. Add conserverser01 to ~/.ssh/config (see below)
+# 2. Get hlk to add you and your public key to conserver01
 # 3. Do something like "ssh -F ssh_config west1.switch.bh"
 
 # This is the jump host.
-# you must utit in ~/.ssh/config
+# you must put it in ~/.ssh/config
 #Host conserver01
 #      Hostname 151.216.8.2
-## additional suggestoins
+## additional suggestions
 #     User hlk
 #     LocalForward 1443 10.123.44.2:443
 #     LocalForward 8443 10.123.44.3:8443
