@@ -1,8 +1,8 @@
 # Bornhack
 # to get acces:
-# 1. add conserverser01 to ~/.ssh/config
-# 2. get HK to add you and your public key to conserver01
-# 3. Do something like "ssh -F ssh_config west1.switch.bh
+# 1. add conserverser01 to ~/.ssh/config (see below)
+# 2. get hlk to add you and your public key to conserver01
+# 3. Do something like "ssh -F ssh_config west1.switch.bh"
 
 # This is the jump host.
 # you must utit in ~/.ssh/config
