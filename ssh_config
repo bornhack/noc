@@ -1,9 +1,16 @@
-
 # Bornhack
-Host conserver01
-  Hostname 10.123.44.1
+
+# To get access:
+# 1. Add conserverser01 to ~/.ssh/config (see below)
+# 2. Get hlk to add you and your public key to conserver01
+# 3. Do something like "ssh -F ssh_config west1.switch.bh"
+
+# This is the jump host.
+# you must put it in ~/.ssh/config
+#Host conserver01
 #      Hostname 151.216.8.2
-  User hlk
+## additional suggestions
+#     User hlk
 #     LocalForward 1443 10.123.44.2:443
 #     LocalForward 8443 10.123.44.3:8443
 #     LocalForward 8000 10.123.44.4:80
@@ -11,16 +18,18 @@ Host conserver01
 # internal IP
 # 10.123.44.1 conserver01
 
-# LibreNMS, Oxidized, syslog
-Host bornhack-nms01
-        Hostname 10.123.44.5
+Host *.bh
         ProxyCommand ssh -q -a -x conserver01 -W %h:22
+
+# LibreNMS, Oxidized, syslog
+Host bornhack-nms01.bh
+        Hostname 10.123.44.5
 
 # Switches
 # Born-core is virtual chassis EX3300
-Host born-core-01
+Host born-core-01.bh
         Hostname 10.123.44.10
-        ProxyCommand ssh -q -a -x conserver01 -W %h:22
+
 #Host born-core-02
 #       Hostname 10.123.44.11
 #Host born-srx-01
@@ -28,53 +37,34 @@ Host born-core-01
 #Host born-srx-02
 #        Hostname 10.123.44.13
 
-Host noctent1
-        Port 22
+host *.switch.bh
+        user hlk
+        kexAlgorithms +diffie-hellman-group1-sha1
+        ciphers aes256-cbc
+        hostKeyAlgorithms +ssh-dss
+        ProxyCommand ssh -q -a -x conserver01 -W %h:22
+
+Host noctent1.switch.bh
         Hostname 10.123.44.6
-        ProxyCommand ssh -q -a -x conserver01 -W %h:22
-        hostkeyAlgorithms +ssh-dss
-        kexAlgorithms +diffie-hellman-group1-sha1
 
-Host south3
-        Port 22
+Host south3.switch.bh
         Hostname 10.123.44.30
-        ProxyCommand ssh -q -a -x conserver01 -W %h:22
-        hostkeyAlgorithms +ssh-dss
-        kexAlgorithms +diffie-hellman-group1-sha1
 
-Host south2
-        Port 22
+Host south2.switch.bh
         Hostname 10.123.44.20
-        ProxyCommand ssh -q -a -x conserver01 -W %h:22
-        hostkeyAlgorithms +ssh-dss
-        kexAlgorithms +diffie-hellman-group1-sha1
-Host southwest1
-        Port 22
+
+Host southwest1.switch.bh
         Hostname 10.123.44.21
-        ProxyCommand ssh -q -a -x conserver01 -W %h:22
-        hostkeyAlgorithms +ssh-dss
-        kexAlgorithms +diffie-hellman-group1-sha1
-Host south1
-        Port 22
+
+Host south1.switch.bh
         Hostname 10.123.44.15
-        ProxyCommand ssh -q -a -x conserver01 -W %h:22
-        hostkeyAlgorithms +ssh-dss
-        kexAlgorithms +diffie-hellman-group1-sha1
-Host west1
-        Port 22
+
+Host west1.switch.bh
         Hostname 10.123.44.40
-        ProxyCommand ssh -q -a -x conserver01 -W %h:22
-        hostkeyAlgorithms +ssh-dss
-        kexAlgorithms +diffie-hellman-group1-sha1
-Host west2
-        Port 22
+
+Host west2.switch.bh
         Hostname 10.123.44.41
-        ProxyCommand ssh -q -a -x conserver01 -W %h:22
-        hostkeyAlgorithms +ssh-dss
-        kexAlgorithms +diffie-hellman-group1-sha1
-Host north1
-        Port 22
+
+Host north1.switch.bh
         Hostname 10.123.44.42
-        ProxyCommand ssh -q -a -x conserver01 -W %h:22
-        hostkeyAlgorithms +ssh-dss
-        kexAlgorithms +diffie-hellman-group1-sha1
+
