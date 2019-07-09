@@ -1,5 +1,7 @@
 # BornHack NOC
 
+**Note that we are organising NOC stuff this year at [gitlab.com](https://gitlab.com/bornhack/noc)**
+
 Stuff for the BornHack NOC team
 
 We will try to assemble our scripts, configurations and other things needed to run the network at BornHack.
