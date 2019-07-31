@@ -173,10 +173,10 @@ The peg.
    2001:DB8:FFFE:F300::2/56
    ...
 
-   Then make sure the corresponding interfaces are configured on the
-   router. We suggest using ::1 on the router and ::2 for the client
-   as shown. This is to a bit similar to IPv6 prefix delegation as
-   described in RFC3633.
+   Then make sure the corresponding interfaces and routes are
+   pre-configured on the router. We suggest using ::1 on the router and
+   ::2 for the client as shown. This is to a bit similar to IPv6 prefix
+   delegation as described in RFC3633.
 
 
 >The IPv4 part of the peg.
