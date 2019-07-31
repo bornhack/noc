@@ -371,6 +371,12 @@ Security Considerations
    address from the default router as his IP-number, rendering the
    network useless for a period of time.
 
+>  The past has shown that dynamic configuration using information from
+   untrusted sources into operating systems and configuration scripts
+   and daemons incur a high risk of remote code execution. This risk
+   can be reduced using the described peg method, as the human entering
+   the information may act as a filter for the information, a firehuman.
+
 
 
 
