@@ -172,6 +172,7 @@ The peg.
    2001:DB8:FFFE:F200::2/56
    2001:DB8:FFFE:F300::2/56
    ...
+   2001:DB8:FFFE:FF00::2/56
 
    Then make sure the corresponding interfaces and routes are
    pre-configured on the router. We suggest using ::1 on the router and
